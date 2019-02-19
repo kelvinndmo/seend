@@ -10,5 +10,5 @@ class Parcel(models.Model):
     sender_phone = models.IntegerField()
 
     def __str__(self):
-        self.sender or self.destination
+        return self.sender or self.destination
         
