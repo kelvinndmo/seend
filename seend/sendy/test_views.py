@@ -8,7 +8,7 @@ class TestRiderViews(APITestCase):
 		self.rider.save()
 
 	def test_new_rider(self):
-		response = se;f.client.post(reverse('parcels'), {
+		response = self.client.post(reverse('riders'), {
 			"username": "Kelvin Kibet",
 			"email": "kib@olympians.com",
 			"contact_phone": "17655",
@@ -18,6 +18,6 @@ class TestRiderViews(APITestCase):
 		self.assertEqual(201, response.status_code)
 
 	def test_all_riders(self):
-		response = self.client.get(reverse('riders', format="json"))
+		response = self.client.get(reverse('riders'), format="json")
 		self.assertEqual(len(response.data), 1)
 		self.assertEqual(200, response.status_code)
