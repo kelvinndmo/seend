@@ -37,8 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'sendy.apps.SendyConfig',
-    'rest_framework',
+    'sendy',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [

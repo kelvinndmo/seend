@@ -12,6 +12,16 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
+            name='Parcel',
+            fields=[
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('destination', models.CharField(max_length=60)),
+                ('origin', models.CharField(max_length=100)),
+                ('sender', models.CharField(max_length=120)),
+                ('recipient', models.CharField(max_length=100)),
+                ('recipient_phone', models.IntegerField()),
+                ('sender_phone', models.IntegerField()),
+            ],
             name='RiderProfile',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
