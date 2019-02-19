@@ -3,6 +3,7 @@ from django.db import models
 # Create your models here.
 
 class RiderProfile(models.Model):
+	"""Model for registering a rider. """"
 	created = models.DateTimeField(auto_now_add=True)
 	username = models.CharField(max_length=50)
 	email = models.EmailField()
@@ -11,6 +12,3 @@ class RiderProfile(models.Model):
 
 	class Meta:
 		ordering = ['created']
-
-
-
