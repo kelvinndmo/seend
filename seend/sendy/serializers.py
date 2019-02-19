@@ -1,4 +1,4 @@
-""" This module contains the serializers for the models """
+""" This module converts complex data to native Python data types """
 from rest_framework import serializers
 
 from sendy.models import (
