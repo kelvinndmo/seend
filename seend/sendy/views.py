@@ -1,3 +1,11 @@
-from django.shortcuts import render
+from .serializers import ParcelSerializer
+from .models import Parcel
+from rest_framework import generics
 
-# Create your views here.
+class ParcelList(generics.ListCreateAPIView):
+    queryset = Parcel.objects.all()
+    serializer_class = ParcelSerializer
+
+class OneParcel(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Parcel.objects.all()
+    serializer_class = ParcelSerializer
