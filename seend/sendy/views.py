@@ -1,8 +1,8 @@
 from rest_framework import generics
 
-from views.models import (
+from sendy.models import (
     EmployeeProfile, Parcel, RiderProfile, CustomerProfile)
-from views.serializers import (
+from sendy.serializers import (
     EmployeeSerializer, ParcelSerializer, RiderSerializer, CustomerSerializer)
 
 
