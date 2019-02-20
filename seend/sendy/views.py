@@ -20,7 +20,6 @@ class AllRiders(generics.ListCreateAPIView):
 	queryset = RiderProfile.objects.all()
 	serializer_class = RiderSerializer
 
-# Create your views here.
 class Employee(generics.ListCreateAPIView):
     """ This class creates an endpoint for getting all employees
     and creating an employee
@@ -28,7 +27,13 @@ class Employee(generics.ListCreateAPIView):
     queryset = EmployeeProfile.objects.all()
     serializer_class = EmployeeSerializer
 
-# Create customer
+
+class EmployeeEdit(generics.RetrieveUpdateAPIView):
+    """ This class creates an endpoint for getting all employees
+    and creating an employee
+    """
+    queryset = EmployeeProfile.objects.all()
+    serializer_class = EmployeeSerializer
 
 
 class Customer(generics.ListCreateAPIView):
