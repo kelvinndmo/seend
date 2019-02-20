@@ -1,8 +1,8 @@
 from rest_framework import generics
 
-from .models import (
+from views.models import (
     EmployeeProfile, Parcel, RiderProfile, CustomerProfile)
-from .serializers import (
+from views.serializers import (
     EmployeeSerializer, ParcelSerializer, RiderSerializer, CustomerSerializer)
 
 

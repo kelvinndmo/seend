@@ -29,6 +29,7 @@ class RiderProfile(models.Model):
 
 
 class EmployeeProfile(models.Model):
+    """Model for employee"""
     created = models.DateTimeField(auto_now_add=True)
     username = models.CharField(max_length=50)
     email = models.EmailField()
@@ -40,6 +41,7 @@ class EmployeeProfile(models.Model):
 
 
 class CustomerProfile(models.Model):
+    """Model for customer"""
     created = models.DateTimeField(auto_now_add=True)
     username = models.CharField(max_length=50)
     email = models.EmailField()
