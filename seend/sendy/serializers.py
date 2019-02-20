@@ -1,8 +1,8 @@
 """ This module converts complex data to native Python data types """
 from rest_framework import serializers
 
-from sendy.models import (
-    RiderProfile, EmployeeProfile, Parcel)
+from .models import (
+    RiderProfile, EmployeeProfile, Parcel, CustomerProfile)
 
 
 class ParcelSerializer(serializers.ModelSerializer):
@@ -24,4 +24,11 @@ class EmployeeSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = EmployeeProfile
+        fields = ('created', 'username', 'email', 'contact_phone')
+
+
+class CustomerSerializer(serializers.ModelSerializer):
+    """""This class is used to serialize customer profile"""
+    class Meta:
+        model = CustomerProfile
         fields = ('created', 'username', 'email', 'contact_phone')

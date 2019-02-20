@@ -37,3 +37,13 @@ class EmployeeProfile(models.Model):
 
     class Meta:
         ordering = ['created']
+
+
+class CustomerProfile(models.Model):
+    created = models.DateTimeField(auto_now_add=True)
+    username = models.CharField(max_length=50)
+    email = models.EmailField()
+    contact_phone = models.IntegerField()
+
+    class Meta:
+        ordering = ['created']
