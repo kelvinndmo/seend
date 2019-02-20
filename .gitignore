@@ -112,3 +112,4 @@ Pipfile*
 
 #ide files
 .idea/
+0001_initial.py
