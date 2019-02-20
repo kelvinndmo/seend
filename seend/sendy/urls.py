@@ -7,6 +7,7 @@ urlpatterns = [
     path('parcels/<int:pk>/', views.OneParcel.as_view()),
     path('riders', views.AllRiders.as_view(), name='riders'),
     path("employees", views.Employee.as_view()),
+    path("employees/<int:pk>/", views.EmployeeEdit.as_view())
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

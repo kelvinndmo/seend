@@ -27,3 +27,10 @@ class Employee(generics.ListCreateAPIView):
     """
     queryset = EmployeeProfile.objects.all()
     serializer_class = EmployeeSerializer
+
+class EmployeeEdit(generics.RetrieveUpdateAPIView):
+    """ This class creates an endpoint for getting all employees
+    and creating an employee
+    """
+    queryset = EmployeeProfile.objects.all()
+    serializer_class = EmployeeSerializer

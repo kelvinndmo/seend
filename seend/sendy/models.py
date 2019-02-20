@@ -37,3 +37,4 @@ class EmployeeProfile(models.Model):
 
     class Meta:
         ordering = ['created']
+
