@@ -1,7 +1,7 @@
 """ This module converts complex data to native Python data types """
 from rest_framework import serializers
 
-from .models import (
+from sendy.models import (
     RiderProfile, EmployeeProfile, Parcel, CustomerProfile)
 
 
