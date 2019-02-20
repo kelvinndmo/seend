@@ -1,9 +1,9 @@
 from rest_framework import generics
 
-from sendy.models import (
-    EmployeeProfile,Parcel, RiderProfile)
-from sendy.serializers import (
-    EmployeeSerializer, ParcelSerializer, RiderSerializer) 
+from views.models import (
+    EmployeeProfile, Parcel, RiderProfile, CustomerProfile)
+from views.serializers import (
+    EmployeeSerializer, ParcelSerializer, RiderSerializer, CustomerSerializer)
 
 
 class ParcelList(generics.ListCreateAPIView):
@@ -27,3 +27,11 @@ class Employee(generics.ListCreateAPIView):
     """
     queryset = EmployeeProfile.objects.all()
     serializer_class = EmployeeSerializer
+
+# Create customer
+
+
+class Customer(generics.ListCreateAPIView):
+    """This is class that manages the customer data"""
+    queryset = CustomerProfile.objects.all()
+    serializer_class = CustomerSerializer

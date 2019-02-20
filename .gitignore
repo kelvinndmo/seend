@@ -108,3 +108,8 @@ venv.bak/
 .vscode/
 Pipfile*
 /migrations
+
+
+#ide files
+.idea/
+0001_initial.py

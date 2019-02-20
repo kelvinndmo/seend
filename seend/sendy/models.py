@@ -29,11 +29,23 @@ class RiderProfile(models.Model):
 
 
 class EmployeeProfile(models.Model):
+    """Model for employee"""
     created = models.DateTimeField(auto_now_add=True)
     username = models.CharField(max_length=50)
     email = models.EmailField()
     contact_phone = models.IntegerField()
     operation_area = models.CharField(max_length=25)
+
+    class Meta:
+        ordering = ['created']
+
+
+class CustomerProfile(models.Model):
+    """Model for customer"""
+    created = models.DateTimeField(auto_now_add=True)
+    username = models.CharField(max_length=50)
+    email = models.EmailField()
+    contact_phone = models.IntegerField()
 
     class Meta:
         ordering = ['created']
