@@ -1,20 +1,26 @@
-from rest_framework import generics, permissions
+from rest_framework import generics, permissions, response
 from django.contrib.auth.models import User
 
 from sendy.models import (
     EmployeeProfile, Parcel, RiderProfile, CustomerProfile)
 from sendy.serializers import (
     EmployeeSerializer, ParcelSerializer, RiderSerializer, CustomerSerializer, UserSerializer)
-from sendy.permissions import IsOwnerOrReadOnly
+from sendy.permissions import IsOwnerOrReadOnly, ReadOnly
 
 
 class ParcelList(generics.ListCreateAPIView):
-    permission_classes = (permissions.IsAuthenticated,)
+    permission_classes = (permissions.IsAuthenticated|ReadOnly,)
     queryset = Parcel.objects.all()
     serializer_class = ParcelSerializer
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
+
+    def get(self, request, format=None):
+        content = {
+            "status": "You do not have permission to view this resource"
+        }
+        return response.Response(content)
 
 class OneParcel(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly)
