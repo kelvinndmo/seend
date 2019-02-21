@@ -8,6 +8,8 @@ urlpatterns = [
     path('riders', views.AllRiders.as_view(), name='riders'),
     path("employees", views.Employee.as_view()),
     path("customer", views.Customer.as_view()),
+    path("users/", views.UserList.as_view()),
+    path("users/<int:pk>/", views.UserDetail.as_view()),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

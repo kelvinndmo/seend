@@ -14,6 +14,7 @@ class TestRiderProfileModel(TestCase):
 	def test_rider_creation(self):
 		""" Method tests rider creation. """
 		self.assertEqual(self.rider.email, "keith@olympians.com")
+		self.assertEqual(self.rider.username, "Keith Mandela")
 
 	def test_rider_list(self):
 		""" Method tests getting all riders. ""

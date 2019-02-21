@@ -11,6 +11,10 @@ class Parcel(models.Model):
     recipient = models.CharField(max_length=100)
     recipient_phone = models.IntegerField()
     sender_phone = models.IntegerField()
+    owner = models.ForeignKey('auth.User', related_name='parcels', on_delete=models.CASCADE)
+
+    def save(self, *args, **kwargs):
+        super(Parcel, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.sender or self.destination

@@ -1,15 +1,25 @@
 """ This module converts complex data to native Python data types """
 from rest_framework import serializers
+from django.contrib.auth.models import User
 
 from sendy.models import (
     RiderProfile, EmployeeProfile, Parcel, CustomerProfile)
 
 
+class UserSerializer(serializers.ModelSerializer):
+    parcels = serializers.PrimaryKeyRelatedField(many=True, queryset=Parcel.objects.all())
+
+    class Meta:
+        model = User
+        fields = ("id", "username", "parcels")
+
+
 class ParcelSerializer(serializers.ModelSerializer):
+    owner = serializers.ReadOnlyField(source='owner.username')
     class Meta:
         model = Parcel
         fields = (
-            'destination','origin','sender_phone','recipient_phone','sender','recipient'
+            'destination','origin','sender_phone','recipient_phone','sender','recipient', 'owner'
         )
 
 
