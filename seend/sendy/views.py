@@ -9,7 +9,7 @@ from sendy.permissions import IsOwnerOrReadOnly, ReadOnly
 
 
 class ParcelList(generics.ListCreateAPIView):
-    permission_classes = (permissions.IsAuthenticated|ReadOnly,)
+    permission_classes = (ReadOnly,)
     queryset = Parcel.objects.all()
     serializer_class = ParcelSerializer
 
@@ -26,6 +26,13 @@ class OneParcel(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly)
     queryset = Parcel.objects.all()
     serializer_class = ParcelSerializer
+
+class UserParcels(generics.ListAPIView):
+    serializer_class = ParcelSerializer
+
+    def get_queryset(self):
+        user = self.request.user
+        return Parcel.objects.filter(owner=user)
 
 class UserList(generics.ListAPIView):
     queryset = User.objects.all()
