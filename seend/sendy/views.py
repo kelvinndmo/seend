@@ -1,13 +1,15 @@
-from rest_framework import generics
+from rest_framework import generics, permissions
 from django.contrib.auth.models import User
 
 from sendy.models import (
     EmployeeProfile, Parcel, RiderProfile, CustomerProfile)
 from sendy.serializers import (
     EmployeeSerializer, ParcelSerializer, RiderSerializer, CustomerSerializer, UserSerializer)
+from sendy.permissions import IsOwnerOrReadOnly
 
 
 class ParcelList(generics.ListCreateAPIView):
+    permission_classes = (permissions.IsAuthenticated,)
     queryset = Parcel.objects.all()
     serializer_class = ParcelSerializer
 
@@ -15,6 +17,7 @@ class ParcelList(generics.ListCreateAPIView):
         serializer.save(owner=self.request.user)
 
 class OneParcel(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly)
     queryset = Parcel.objects.all()
     serializer_class = ParcelSerializer
 
