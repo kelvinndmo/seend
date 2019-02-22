@@ -1,19 +1,46 @@
-from rest_framework import generics
+from rest_framework import generics, permissions, response
+from django.contrib.auth.models import User
 
 from sendy.models import (
     EmployeeProfile, Parcel, RiderProfile, CustomerProfile)
 from sendy.serializers import (
-    EmployeeSerializer, ParcelSerializer, RiderSerializer, CustomerSerializer)
+    EmployeeSerializer, ParcelSerializer, RiderSerializer, CustomerSerializer, UserSerializer)
+from sendy.permissions import IsOwnerOrReadOnly, ReadOnly
 
 
 class ParcelList(generics.ListCreateAPIView):
+    permission_classes = (ReadOnly,)
     queryset = Parcel.objects.all()
     serializer_class = ParcelSerializer
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
+
+    def get(self, request, format=None):
+        content = {
+            "status": "You do not have permission to view this resource"
+        }
+        return response.Response(content)
 
 class OneParcel(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly)
     queryset = Parcel.objects.all()
     serializer_class = ParcelSerializer
 
+class UserParcels(generics.ListAPIView):
+    serializer_class = ParcelSerializer
+
+    def get_queryset(self):
+        user = self.request.user
+        return Parcel.objects.filter(owner=user)
+
+class UserList(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+class UserDetail(generics.RetrieveAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
 class AllRiders(generics.ListCreateAPIView):
 	"""Class to create a new rider and view all riders. """
