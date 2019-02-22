@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from sendy.models import (
     EmployeeProfile, Parcel, RiderProfile, CustomerProfile, AppUser, StaffUser)
 from sendy.serializers import (
-    EmployeeSerializer, ParcelSerializer, RiderSerializer, CustomerSerializer, AppUserSerializer, StaffUserSerializer)
+    EmployeeSerializer, ParcelSerializer, RiderSerializer, CustomerSerializer, AppUserSerializer, StaffUserSerializer, ParcelStatusSerializer)
 from sendy.permissions import IsOwnerOrReadOnly, ReadOnly
 
 
@@ -33,6 +33,11 @@ class UserParcels(generics.ListAPIView):
     def get_queryset(self):
         user = self.request.user
         return Parcel.objects.filter(owner=user)
+
+class UpdateParcelStatus(generics.RetrieveUpdateAPIView):
+    queryset = Parcel.objects.all()
+    serializer_class = ParcelStatusSerializer
+
 
 class RegisterUser(generics.CreateAPIView):
     queryset = AppUser.objects.all()

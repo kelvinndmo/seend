@@ -27,6 +27,14 @@ class ParcelSerializer(serializers.ModelSerializer):
         )
 
 
+class ParcelStatusSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Parcel
+        fields = (
+            'parcel_status',
+        )
+
+
 class RiderSerializer(serializers.ModelSerializer):
 	"""Serializer class for the RiderProfile model. """
 	class Meta:
