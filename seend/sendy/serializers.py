@@ -23,7 +23,7 @@ class ParcelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Parcel
         fields = (
-            'destination','origin','sender_phone','recipient_phone','sender','recipient', 'owner'
+            'destination','origin','sender_phone','recipient_phone','sender','recipient', 'owner', 'parcel_status', 'assigned_rider'
         )
 
 
@@ -40,6 +40,14 @@ class ParcelDestinationSerializer(serializers.ModelSerializer):
         model = Parcel
         fields = (
             'destination',
+        )
+
+
+class AssignRiderSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Parcel
+        fields = (
+            'assigned_rider',
         )
 
 

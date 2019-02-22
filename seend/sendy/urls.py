@@ -7,6 +7,7 @@ urlpatterns = [
     path('parcels/<int:pk>/', views.OneParcel.as_view()),
     path('parcels/update_status/<int:pk>/', views.UpdateParcelStatus.as_view()),
     path('parcels/update_destination/<int:pk>/', views.UpdateParcelDestination.as_view()),
+    path('parcels/<int:pk>/assign_rider', views.AssignRider.as_view()),
     path('parcels/user', views.UserParcels.as_view()),
     path('riders', views.AllRiders.as_view(), name='riders'),
     path("employees", views.Employee.as_view()),
