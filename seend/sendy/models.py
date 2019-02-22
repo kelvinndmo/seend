@@ -2,6 +2,7 @@
 
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.conf import settings
 
 
 # Create your models here.
@@ -113,6 +114,8 @@ class Parcel(models.Model):
     recipient_phone = models.IntegerField()
     sender_phone = models.IntegerField()
     parcel_status = models.CharField(max_length=30, default=status_dict["status_1"])
+    assigned_rider = models.CharField(max_length=30, default="No Rider Assigned")
+    # assigned_rider = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='assigned_parcels', on_delete=models.CASCADE, null=True)
     owner = models.ForeignKey('auth.User', related_name='parcels', on_delete=models.CASCADE)
 
     def save(self, *args, **kwargs):
