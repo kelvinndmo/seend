@@ -3,15 +3,19 @@ from rest_framework import serializers
 from django.contrib.auth.models import User
 
 from sendy.models import (
-    RiderProfile, EmployeeProfile, Parcel, CustomerProfile)
+    RiderProfile, EmployeeProfile, Parcel, CustomerProfile, AppUser, StaffUser)
 
 
-class UserSerializer(serializers.ModelSerializer):
-    parcels = serializers.PrimaryKeyRelatedField(many=True, queryset=Parcel.objects.all())
-
+class AppUserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = User
-        fields = ("id", "username", "parcels")
+        model = AppUser
+        fields = ("email", "username", "contact_phone", "user_type", "password")
+
+
+class StaffUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = StaffUser
+        fields = ("email", "username", "contact_phone", "user_type", "password", "operation_area")
 
 
 class ParcelSerializer(serializers.ModelSerializer):
