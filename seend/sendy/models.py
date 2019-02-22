@@ -113,6 +113,7 @@ class Parcel(models.Model):
     recipient_phone = models.IntegerField()
     sender_phone = models.IntegerField()
     parcel_status = models.CharField(max_length=30, default=status_dict["status_1"])
+    assigned_rider = models.CharField(max_length=30, default='No Rider Assigned')
     owner = models.ForeignKey('auth.User', related_name='parcels', on_delete=models.CASCADE)
 
     def save(self, *args, **kwargs):
