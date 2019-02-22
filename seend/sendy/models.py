@@ -99,12 +99,20 @@ class StaffUser(AbstractBaseUser):
         return self.is_admin
 
 class Parcel(models.Model):
+    status_dict = {
+        "status_1": "Awaiting Rider Pickup",
+        "status_2": "Rider Assigned. On Transit",
+        "status_3": "Awaiting Pickup",
+        "status_4": "Delivered",
+        "status_5": "Cancelled"
+        }
     destination = models.CharField(max_length=60)
     origin = models.CharField(max_length=100)
     sender = models.CharField(max_length=120)
     recipient = models.CharField(max_length=100)
     recipient_phone = models.IntegerField()
     sender_phone = models.IntegerField()
+    parcel_status = models.CharField(max_length=30, default=status_dict["status_1"])
     owner = models.ForeignKey('auth.User', related_name='parcels', on_delete=models.CASCADE)
 
     def save(self, *args, **kwargs):
